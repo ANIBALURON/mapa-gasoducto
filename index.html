@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mapa Cartera Predoblado - 2026-02-25 17:44</title>
+<title>Mapa Cartera Predoblado - 2026-02-26 06:44</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
@@ -56,7 +56,7 @@
   </h2>
   <div class="content">
     <div class="stats">765 tubos con coordenadas | 538 sin coordenadas</div>
-    <div class="stats">Generado: 2026-02-25 17:44</div>
+    <div class="stats">Generado: 2026-02-26 06:44</div>
     <div class="legend">
       <span class="legend-item"><span class="legend-dot" style="background:#00cc00"></span>INICIO</span><span class="legend-item"><span class="legend-dot" style="background:#cc0000"></span>FIN</span><span class="legend-item"><span class="legend-dot" style="background:#8b0000"></span>Codo</span><span class="legend-item"><span class="legend-dot" style="background:#800080"></span>Niple</span><span class="legend-item"><span class="legend-dot" style="background:#ff8c00"></span>Perforado</span><span class="legend-item"><span class="legend-dot" style="background:#00cccc"></span>Solape</span><span class="legend-item"><span class="legend-dot" style="background:#ffbf00"></span>Curva</span><span class="legend-item"><span class="legend-dot" style="background:#999999"></span>Recto</span>
     </div>
@@ -73,7 +73,7 @@
 </div>
 <script>
 // Mapa base
-var map = L.map('map',{zoomControl:true,preferCanvas:true}).setView([19.304409,-90.711459],13);
+var map = L.map('map',{zoomControl:true,preferCanvas:true,tapTolerance:20}).setView([19.304409,-90.711459],13);
 map.createPane('linePane');
 map.getPane('linePane').style.zIndex = 350;
 
@@ -121,10 +121,10 @@ function toggleLabels(tipo) {
 // Funcion para crear marcadores
 function m(lat,lon,color,tipo,tubo,pk,serial,longitud,grados,centro,notas,tramo,espesor) {
   var circle = L.circleMarker([lat,lon],{
-    radius: (tipo==='INICIO'||tipo==='FIN') ? 7 : (tipo==='Recto' ? 4 : 5),
+    radius: (tipo==='INICIO'||tipo==='FIN') ? 10 : (tipo==='Recto' ? 6 : 8),
     fillColor: color,
     color: '#333',
-    weight: 1,
+    weight: 2,
     opacity: 1,
     fillOpacity: 0.85
   });
