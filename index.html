@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mapa Cartera Predoblado - 2026-03-04 08:38</title>
+<title>Mapa Cartera Predoblado - 2026-03-04 08:48</title>
 <style>/* required styles */
 
 .leaflet-pane,
@@ -722,7 +722,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   </h2>
   <div class="content">
     <div class="stats">1329 tubos con coordenadas | 109 sin coordenadas</div>
-    <div class="stats">Generado: 2026-03-04 08:38</div>
+    <div class="stats">Generado: 2026-03-04 08:48</div>
     <div class="legend">
       <span class="legend-item"><span class="legend-dot" style="background:#00cc00"></span>INICIO</span><span class="legend-item"><span class="legend-dot" style="background:#cc0000"></span>FIN</span><span class="legend-item"><span class="legend-dot" style="background:#8b0000"></span>Codo</span><span class="legend-item"><span class="legend-dot" style="background:#800080"></span>Niple</span><span class="legend-item"><span class="legend-dot" style="background:#ff8c00"></span>Perforado</span><span class="legend-item"><span class="legend-dot" style="background:#00cccc"></span>Solape</span><span class="legend-item"><span class="legend-dot" style="background:#1E90FF"></span>Secc. Movil</span><span class="legend-item"><span class="legend-dot" style="background:#D2691E"></span>Camino</span><span class="legend-item"><span class="legend-dot" style="background:#ffbf00"></span>Curva</span><span class="legend-item"><span class="legend-dot" style="background:#999999"></span>Recto</span>
     </div>
@@ -867,7 +867,7 @@ function m(lat,lon,color,tipo,tubo,pk,serial,longitud,grados,centro,notas,tramo,
   }
   // Etiqueta PK
   if(pk) {
-    var lblPK = L.marker([lat,lon],{icon:L.divIcon({className:'label-pk',html:'<span>'+pk+'</span>',iconSize:[0,0],iconAnchor:[-8,12]})
+    var lblPK = L.marker([lat,lon],{icon:L.divIcon({className:'label-pk',html:'<span>'+pk+'</span>',iconSize:[0,0],iconAnchor:[-8,28]})
     });
     lblPKLayer.addLayer(lblPK);
   }
