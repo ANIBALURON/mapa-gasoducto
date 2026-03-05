@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mapa Cartera Predoblado - 2026-03-04 16:12</title>
+<title>Mapa Cartera Predoblado - 2026-03-05 11:02</title>
 <style>/* required styles */
 
 .leaflet-pane,
@@ -712,6 +712,11 @@ svg.leaflet-image-layer.leaflet-interactive path {
   .popup-table td { border:1px solid #ddd; padding:3px 8px; }
   .popup-table td:first-child { font-weight:bold; background:#f5f5f5; white-space:nowrap; }
   .popup-table .highlight { color:#cc0000; font-weight:bold; }
+  .popup-btns { display:flex; gap:5px; margin-top:6px; }
+  .popup-btns a, .popup-btns button { flex:1; padding:6px 4px; border:none; border-radius:4px; font-size:11px; font-weight:bold; cursor:pointer; text-align:center; text-decoration:none; }
+  .btn-navegar { background:#4285F4; color:#fff !important; }
+  .btn-copiar { background:#34A853; color:#fff; }
+  .btn-copiar.copiado { background:#888; }
 </style>
 </head>
 <body>
@@ -722,7 +727,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   </h2>
   <div class="content">
     <div class="stats">1330 tubos con coordenadas | 109 sin coordenadas</div>
-    <div class="stats">Generado: 2026-03-04 16:12</div>
+    <div class="stats">Generado: 2026-03-05 11:02</div>
     <div class="legend">
       <span class="legend-item"><span class="legend-dot" style="background:#00cc00"></span>INICIO</span><span class="legend-item"><span class="legend-dot" style="background:#cc0000"></span>FIN</span><span class="legend-item"><span class="legend-dot" style="background:#8b0000"></span>Codo</span><span class="legend-item"><span class="legend-dot" style="background:#800080"></span>Niple</span><span class="legend-item"><span class="legend-dot" style="background:#ff8c00"></span>Perforado</span><span class="legend-item"><span class="legend-dot" style="background:#00cccc"></span>Solape</span><span class="legend-item"><span class="legend-dot" style="background:#1E90FF"></span>Secc. Movil</span><span class="legend-item"><span class="legend-dot" style="background:#D2691E"></span>Camino</span><span class="legend-item"><span class="legend-dot" style="background:#ffbf00"></span>Curva</span><span class="legend-item"><span class="legend-dot" style="background:#999999"></span>Recto</span>
     </div>
@@ -829,6 +834,15 @@ function toggleLabels(tipo) {
   }
 }
 
+// Copiar coordenadas al portapapeles
+function copiarCoord(btn,lat,lon) {
+  var txt = lat.toFixed(6)+','+lon.toFixed(6);
+  navigator.clipboard.writeText(txt).then(function(){
+    btn.textContent='Copiado!'; btn.classList.add('copiado');
+    setTimeout(function(){ btn.textContent='Copiar coord.'; btn.classList.remove('copiado'); },2000);
+  });
+}
+
 // Funcion para crear marcadores
 function m(lat,lon,color,tipo,tubo,pk,serial,longitud,grados,centro,notas,tramo,espesor,este,norte) {
   var circle = L.circleMarker([lat,lon],{
@@ -853,6 +867,10 @@ function m(lat,lon,color,tipo,tubo,pk,serial,longitud,grados,centro,notas,tramo,
   if(tipo==='INICIO' && norte) html += '<tr><td>Norte</td><td>'+norte+'</td></tr>';
   html += '<tr><td>Tipo</td><td><span style="color:'+color+';font-weight:bold;">'+tipo+'</span></td></tr>';
   html += '</table>';
+  html += '<div class="popup-btns">';
+  html += '<a class="btn-navegar" href="https://www.google.com/maps/dir/?api=1&destination='+lat+','+lon+'&travelmode=driving" target="_blank">Como llegar</a>';
+  html += '<button class="btn-copiar" onclick="copiarCoord(this,'+lat+','+lon+')">Copiar coord.</button>';
+  html += '</div>';
   circle.bindPopup(html,{maxWidth:300});
   allMarkers.push(circle);
   // Etiqueta N.TUBO
