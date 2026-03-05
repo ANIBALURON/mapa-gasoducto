@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mapa Cartera Predoblado - 2026-03-05 11:02</title>
+<title>Mapa Cartera Predoblado - 2026-03-05 11:48</title>
 <style>/* required styles */
 
 .leaflet-pane,
@@ -717,6 +717,11 @@ svg.leaflet-image-layer.leaflet-interactive path {
   .btn-navegar { background:#4285F4; color:#fff !important; }
   .btn-copiar { background:#34A853; color:#fff; }
   .btn-copiar.copiado { background:#888; }
+  .leaflet-control-layers-toggle {
+    width:auto !important; height:auto !important;
+    padding:6px 10px !important; font-size:12px; font-weight:bold;
+    color:#333; background:#fff !important; background-image:none !important;
+  }
 </style>
 </head>
 <body>
@@ -727,7 +732,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   </h2>
   <div class="content">
     <div class="stats">1330 tubos con coordenadas | 109 sin coordenadas</div>
-    <div class="stats">Generado: 2026-03-05 11:02</div>
+    <div class="stats">Generado: 2026-03-05 11:48</div>
     <div class="legend">
       <span class="legend-item"><span class="legend-dot" style="background:#00cc00"></span>INICIO</span><span class="legend-item"><span class="legend-dot" style="background:#cc0000"></span>FIN</span><span class="legend-item"><span class="legend-dot" style="background:#8b0000"></span>Codo</span><span class="legend-item"><span class="legend-dot" style="background:#800080"></span>Niple</span><span class="legend-item"><span class="legend-dot" style="background:#ff8c00"></span>Perforado</span><span class="legend-item"><span class="legend-dot" style="background:#00cccc"></span>Solape</span><span class="legend-item"><span class="legend-dot" style="background:#1E90FF"></span>Secc. Movil</span><span class="legend-item"><span class="legend-dot" style="background:#D2691E"></span>Camino</span><span class="legend-item"><span class="legend-dot" style="background:#ffbf00"></span>Curva</span><span class="legend-item"><span class="legend-dot" style="background:#999999"></span>Recto</span>
     </div>
@@ -2249,7 +2254,10 @@ overlays['KP59+142 AL KP62+839 '] = tr_KP59_142_AL_KP62_839_;
 
 
 // Control de capas
-L.control.layers(baseMaps, overlays, {collapsed:false}).addTo(map);
+var layerCtrl = L.control.layers(baseMaps, overlays, {collapsed:true}).addTo(map);
+// Texto en el boton de capas
+var toggle = layerCtrl.getContainer().querySelector('.leaflet-control-layers-toggle');
+if(toggle) toggle.textContent = 'Capas / Tramos';
 
 // Auto-zoom al extent
 if(allMarkers.length > 0) {
